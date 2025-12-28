@@ -20,13 +20,13 @@
 extern "C" {
 #include "main.h"
 #include "adc.h"
-#include "memorymap.h"
+
 #include "gpio.h"
 }
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "microphone.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

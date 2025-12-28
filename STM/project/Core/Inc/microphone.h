@@ -4,9 +4,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 #include "main.h"
 #include "adc.h"
+
 
 #ifdef __cplusplus
 }
@@ -14,91 +14,64 @@ extern "C" {
 
 #ifdef __cplusplus
 
+
 #include <stdint.h>
 #include <stdbool.h>
 
 /**
- * @brief Microphone class for audio acquisition and processing
+ * @brief MAX9814 Gain Selection
  */
-class Microphone
+typedef enum
 {
+    MAX9814_GAIN_40DB  = 0,   // Low level on GAIN pin
+    MAX9814_GAIN_50DB  = 1,   // Floating GAIN pin
+    MAX9814_GAIN_60DB  = 2    // High level on GAIN pin
+} MAX9814_Gain_t;
+
+/**
+ * @brief MAX9814 Attack/Release Time
+ */
+typedef enum
+{
+    MAX9814_AR_FAST   = 0,    // Low level on A/R pin
+    MAX9814_AR_MEDIUM = 1,    // Floating A/R pin
+    MAX9814_AR_SLOW   = 2     // High level on A/R pin
+} MAX9814_AR_t;
+
+/**
+ * @brief Microphone class for MAX9814 audio acquisition and processing
+ */
+class Mic
+{
+private:
+    int ADC_Cvalue;
+    double voltage;
+
+    ADC_HandleTypeDef* hadc; 
+    uint32_t channel; 
+    uint16_t bufferSize;
+    GPIO_TypeDef* GPIOPort; 
+    uint16_t GPIOPin;
+
 public:
     /**
      * @brief Constructor
+     * @param hadc: ADC handle pointer
      * @param channel: ADC channel number
      * @param bufferSize: Sample buffer size
+     * @param GPIOPort: GPIO port (optional, set nullptr if not used)
+     * @param GPIOPin: GPIO pin number (optional, set 0 if not used)
      */
-    Microphone(ADC_HandleTypeDef* hadc, uint32_t channel, uint16_t bufferSize);
+    Mic(ADC_HandleTypeDef* hadc, 
+               uint32_t channel, 
+               uint16_t bufferSize,
+               GPIO_TypeDef* GPIOPort = nullptr, 
+               uint16_t GPIOPin = 0);
 
-    /**
-     * @brief Destructor
-     */
-    ~Microphone();
+    void init();
 
-    /**
-     * @brief Initialize microphone
-     * @retval None
-     */
-    void Init(void);
-
-    /**
-     * @brief Start sampling (DMA mode)
-     * @retval None
-     */
-    void StartSampling(void);
-
-    /**
-     * @brief Stop sampling
-     * @retval None
-     */
-    void StopSampling(void);
-
-    /**
-     * @brief Get sample data
-     * @param buffer: Pointer to store sample data
-     * @retval None
-     */
-    void GetSamples(uint16_t* buffer);
-
-    /**
-     * @brief Get single sample
-     * @retval Sample value
-     */
-    uint16_t GetSample(uint16_t index);
-
-    /**
-     * @brief Get buffer size
-     * @retval Buffer size
-     */
-    uint16_t GetBufferSize(void);
-
-    /**
-     * @brief Check if sampling is complete
-     * @retval true if complete, false otherwise
-     */
-    bool IsSamplingComplete(void);
-
-    /**
-     * @brief Reset sampling complete flag
-     * @retval None
-     */
-    void ResetSamplingFlag(void);
-
-private:
-    ADC_HandleTypeDef* m_hadc;       // ADC handle pointer
-    uint32_t m_channel;              // ADC channel
-    uint16_t* m_buffer;              // Sample buffer
-    uint16_t m_bufferSize;           // Buffer size
-    volatile bool m_samplingComplete; // Sampling complete flag
-
-    /**
-     * @brief Internal callback for conversion complete
-     * @retval None
-     */
-    void ConversionCompleteCallback(void);
-
-    // Friend function for callback
-    friend void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc);
+    void update();
+    double getVoltage();
 };
 
 #endif // __cplusplus
