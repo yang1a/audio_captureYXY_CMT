@@ -66,7 +66,7 @@ void MX_ADC1_Init(void)
 
   /** Configure the ADC multi-mode
   */
-  multimode.Mode = ADC_MODE_INDEPENDENT;
+  multimode.Mode = ADC_MODE_INDEPENDENT; // ADC 独立模式
   if (HAL_ADCEx_MultiModeConfigChannel(&hadc1, &multimode) != HAL_OK)
   {
     Error_Handler();

@@ -2,17 +2,16 @@
 /**
   ******************************************************************************
   * @file           : main.h
-  * @brief          : Header for main.c file.
-  *                   This file contains the common defines of the application.
+  * @brief          : main.c 的头文件。
+  *                   本文件包含应用程序的常用定义。
   ******************************************************************************
   * @attention
   *
   * Copyright (c) 2025 STMicroelectronics.
   * All rights reserved.
   *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
+  * 本软件的许可条款可在本软件组件根目录的 LICENSE 文件中找到。
+  * 若未附带 LICENSE 文件，则按“原样”提供。
   *
   ******************************************************************************
   */

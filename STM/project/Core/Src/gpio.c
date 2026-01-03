@@ -2,17 +2,15 @@
 /**
   ******************************************************************************
   * @file    gpio.c
-  * @brief   This file provides code for the configuration
-  *          of all used GPIO pins.
+  * @brief   本文件提供所有使用 GPIO 引脚的配置代码。
   ******************************************************************************
   * @attention
   *
   * Copyright (c) 2025 STMicroelectronics.
   * All rights reserved.
   *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
+  * 本软件的许可条款可在本软件组件根目录的 LICENSE 文件中找到。
+  * 若未附带 LICENSE 文件，则按“原样”提供。
   *
   ******************************************************************************
   */
@@ -26,13 +24,13 @@
 /* USER CODE END 0 */
 
 /*----------------------------------------------------------------------------*/
-/* Configure GPIO                                                             */
+/* GPIO 配置                                                                   */
 /*----------------------------------------------------------------------------*/
 /* USER CODE BEGIN 1 */
 
 /* USER CODE END 1 */
 
-/** Configure pins
+/** 引脚配置
      PH0-OSC_IN (PH0)   ------> RCC_OSC_IN
      PH1-OSC_OUT (PH1)   ------> RCC_OSC_OUT
 */

@@ -51,21 +51,34 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
+    Core/Src/utils.c
+    Core/Src/audio_capture.c
+    Core/Src/gcc_phat.c
+    Core/Src/servo.c
+    Core/Src/app.c
+    Core/Src/retarget.c
 )
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
+    ${CMAKE_SOURCE_DIR}/Drivers/CMSIS/DSP/Include
 )
 
 # Add project symbols (macros)
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined symbols
+    ARM_MATH_CM7
+    ARM_MATH_MATRIX_CHECK
+    ARM_MATH_ROUNDING
 )
 
 # Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME}
     stm32cubemx
-
+    ${CMAKE_SOURCE_DIR}/Drivers/CMSIS/DSP/Lib/GCC/libarm_cortexM7lfdp_math.a
     # Add user defined libraries
 )
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+

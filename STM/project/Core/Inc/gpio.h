@@ -2,17 +2,15 @@
 /**
   ******************************************************************************
   * @file    gpio.h
-  * @brief   This file contains all the function prototypes for
-  *          the gpio.c file
+  * @brief   本文件包含 gpio.c 的全部函数原型
   ******************************************************************************
   * @attention
   *
   * Copyright (c) 2025 STMicroelectronics.
   * All rights reserved.
   *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
+  * 本软件的许可条款可在本软件组件根目录的 LICENSE 文件中找到。
+  * 若未附带 LICENSE 文件，则按“原样”提供。
   *
   ******************************************************************************
   */
