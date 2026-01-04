@@ -6,6 +6,7 @@ set(MX_Defines_Syms
 	USE_PWR_LDO_SUPPLY 
 	USE_HAL_DRIVER 
 	STM32H743xx
+	ARM_MATH_CM7
     $<$<CONFIG:Debug>:DEBUG>
 )
 
@@ -16,6 +17,7 @@ set(MX_Include_Dirs
     ${CMAKE_SOURCE_DIR}/Drivers/STM32H7xx_HAL_Driver/Inc/Legacy
     ${CMAKE_SOURCE_DIR}/Drivers/CMSIS/Device/ST/STM32H7xx/Include
     ${CMAKE_SOURCE_DIR}/Drivers/CMSIS/Include
+    ${CMAKE_SOURCE_DIR}/Drivers/CMSIS/DSP/Include
 )
 
 # STM32CubeMX generated application sources
@@ -24,6 +26,10 @@ set(MX_Application_Src
     ${CMAKE_SOURCE_DIR}/Core/Src/gpio.c
     ${CMAKE_SOURCE_DIR}/Core/Src/stm32h7xx_it.c
     ${CMAKE_SOURCE_DIR}/Core/Src/stm32h7xx_hal_msp.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/audio_frame.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/gcc_phat.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/servo_ctrl.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/app_doa.c
     ${CMAKE_SOURCE_DIR}/startup_stm32h743xx.s
 )
 
@@ -60,12 +66,12 @@ set(STM32_Drivers_Src
 
 # Link directories setup
 set(MX_LINK_DIRS
-
+    ${CMAKE_SOURCE_DIR}/Drivers/CMSIS/DSP/Lib/GCC
 )
 # Project static libraries
 set(MX_LINK_LIBS 
     STM32_Drivers
-    
+    arm_cortexM7lfsp_math
 )
 # Interface library for includes and symbols
 add_library(stm32cubemx INTERFACE)
