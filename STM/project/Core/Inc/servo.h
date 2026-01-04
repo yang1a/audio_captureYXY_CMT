@@ -1,52 +1,28 @@
-/**
- ******************************************************************************
- * @file           : servo.h
- * @brief          : 舵机 PWM 控制头文件
- ******************************************************************************
- */
-
-#ifndef SERVO_H
-#define SERVO_H
+// Servo control using TIM1 CH1 (PA8) PWM output
+#ifndef __SERVO_H__
+#define __SERVO_H__
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
-#include <stdint.h>
-#include "stm32h7xx_hal.h"
+#include "main.h"
 #include "stm32h7xx_hal_tim.h"
-#include "config.h"
 
-    /**
-     * @brief 初始化舵机控制
-     * @param htim: 用于 PWM 产生的定时器句柄
-     * @param channel: PWM 输出的定时器通道
-     * @return 成功返回 0，失败返回 -1
-     */
-    int Servo_Init(TIM_HandleTypeDef *htim, uint32_t channel);
+// TIM1 handler used for the servo PWM output
+extern TIM_HandleTypeDef htim1;
 
-    /**
-     * @brief 设置舵机角度
-     * @param angle_deg: 目标角度（0~180 度）
-     * @return 成功返回 0，失败返回 -1
-     */
-    int Servo_SetAngle(float angle_deg);
+// Initialize TIM1 for 50 Hz PWM on CH1 (PA8) and start output
+void MX_TIM1_Init(void);
 
-    /**
-     * @brief 启动舵机 PWM 输出
-     * @return 成功返回 0，失败返回 -1
-     */
-    int Servo_Start(void);
+// Update pulse width in microseconds (typical 500-2500 us)
+HAL_StatusTypeDef Servo_SetPulse(uint16_t pulse_us);
 
-    /**
-     * @brief 停止舵机 PWM 输出
-     * @return 成功返回 0，失败返回 -1
-     */
-    int Servo_Stop(void);
+// Convenience: map 0-180 degrees to pulse range
+HAL_StatusTypeDef Servo_SetAngle(uint8_t angle_deg);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* SERVO_H */
+#endif // __SERVO_H__

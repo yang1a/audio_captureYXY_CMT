@@ -1,0 +1,57 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "🐛 Debug STM32 (OpenOCD + DAPLink)",
+            "cwd": "${workspaceFolder}/STM/project",
+            "executable": "${workspaceFolder}/STM/project/build/Debug/project.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "runToEntryPoint": "main",
+            "servertype": "openocd",
+            "configFiles": [
+                "interface/cmsis-dap.cfg",
+                "target/stm32h7x.cfg"
+            ],
+            "searchDir": [
+                "C:/msys64/ucrt64/share/openocd/scripts"
+            ],
+            "serverpath": "C:/msys64/ucrt64/bin/openocd.exe",
+            "preLaunchTask": "Build STM32 (CMake Debug)",
+            "showDevDebugOutput": "raw",
+            "swoConfig": {
+                "enabled": true,
+                "cpuFrequency": 400000000,
+                "swoFrequency": 2000000,
+                "source": "probe",
+                "decoders": [
+                    {
+                        "type": "console",
+                        "label": "ITM",
+                        "port": 0
+                    }
+                ]
+            }
+        },
+        {
+            "name": "🔌 Attach to STM32 (不重置)",
+            "cwd": "${workspaceFolder}/STM/project",
+            "executable": "${workspaceFolder}/STM/project/build/Debug/project.elf",
+            "request": "attach",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "configFiles": [
+                "interface/cmsis-dap.cfg",
+                "target/stm32h7x.cfg"
+            ],
+            "searchDir": [
+                "C:/msys64/ucrt64/share/openocd/scripts"
+            ],
+            "serverpath": "C:/msys64/ucrt64/bin/openocd.exe",
+            "showDevDebugOutput": "raw"
+        }
+    ]
+}

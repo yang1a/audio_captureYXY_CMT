@@ -1,3 +1,20 @@
 {
-    "cmake.sourceDirectory": "D:/PLATFORMIO_PROJECT/music_find/source/STM/project"
+    "cmake.sourceDirectory": "D:/PLATFORMIO_PROJECT/music_find/source/STM/project",
+    "task-buttons.tasks": [
+        {
+            "label": "🔨 编译",
+            "task": "Build STM32 (CMake Debug)",
+            "tooltip": "编译 STM32 项目"
+        },
+        {
+            "label": "⚡ 烧录",
+            "task": "Flash STM32 (DAPLink + OpenOCD)",
+            "tooltip": "烧录固件到 STM32"
+        },
+        {
+            "label": "🚀 编译+烧录",
+            "task": "Build + Flash (One Click)",
+            "tooltip": "一键编译并烧录"
+        }
+    ]
 }
